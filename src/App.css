@@ -1,0 +1,42 @@
+.joinGameContainer {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+}
+
+.joinGameContainer h3 {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+  margin-top: 1rem;
+}
+.joinGameContainer input {
+  width: 210px;
+  height: 40px;
+  margin: 7px;
+  border: 2px solid #b13d3d;
+  border-radius: 5px;
+  padding: 5px;
+  font-size: 16px;
+}
+
+.joinGameContainer button {
+  width: 225px;
+  height: 50px;
+  margin: 7px;
+  border: none;
+  border-radius: 5px;
+  padding: 5px;
+  font-size: 16px;
+  background: #a04343;
+  color: #fff;
+  cursor: pointer;
+}
+
+.joinGameContainer button:hover {
+  background: #863939;
+}
+
+.gameContainer {
+    display: flex;
+    flex-direction: row;
+}
