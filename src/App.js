@@ -4,7 +4,7 @@ import { useState } from "react";
 import io from "socket.io-client";
 import Chat from "./Components/Chat/Chat";
 
-const socket = io.connect("http://localhost:5000");
+const socket = io.connect("https://tictactoe-chat-app.herokuapp.com");
 
 function App() {
   const [roomCode, setRoomCode] = useState(null);
