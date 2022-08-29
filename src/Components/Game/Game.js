@@ -22,7 +22,7 @@ const Main = ({ socket, roomCode, win, lose, tie, setWin, setLose, setTie }) => 
     if (canPlay && board[id] === "") {
       setBoard((data) => ({ ...data, [id]: "X" }));
       socket.emit("play", { id, roomCode });
-      // setCanPlay(false);
+      setCanPlay(false);
     }
   };
 
