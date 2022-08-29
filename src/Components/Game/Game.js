@@ -92,7 +92,7 @@ const Main = ({ socket, roomCode, win, lose, tie, setWin, setLose, setTie }) => 
         {win ?
         <>
           <Confetti/> 
-          <div className="gameFinished">
+          <div className="gameFinished won">
             <h1 className="endText"> Congratulations you won!!! </h1>
             <div className="resetButton" onClick={resetGame}> Reset Game </div>
           </div> 

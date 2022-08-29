@@ -16,12 +16,16 @@ main {
   z-index: 4;
   position: absolute;
   margin-top: 8rem;
-  margin-left: -1rem;
+  margin-left: 16rem;
   display: flex;
   flex-direction: column;
   justify-content: center;
   text-align: center;
   align-items: center;
+}
+
+.won {
+  margin-left: 4.3rem;
 }
 
 .gameFinished h1 {
@@ -44,8 +48,7 @@ main {
 
 @media (max-width: 720px) and (min-height: 360px){
   main {
-    margin-left: 0rem;
-    margin-top: -10rem;
+    margin-top: -11rem;
   }
   .gameFinished {
     margin-top: 11rem;
