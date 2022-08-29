@@ -99,13 +99,13 @@ const Main = ({ socket, roomCode, win, lose, tie, setWin, setLose, setTie }) => 
         </> : ""    
         }
         {lose ?
-            <div className="gameFinished"> 
+            <div className="gameFinished lose"> 
               <h1 className="endText"> Sorry you lose </h1>
               <div className="resetButton" onClick={resetGame}> Reset Game </div>
             </div> : ""
         }
         {tie ?
-            <div className="gameFinished">
+            <div className="gameFinished tie">
               <h1 className="endText"> It's a tie!! Good luck next time </h1>
               <div className="resetButton" onClick={resetGame}> Rematch </div>
             </div> : ""

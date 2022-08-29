@@ -46,6 +46,10 @@ main {
   cursor: pointer;
 }
 
+.tie {
+  margin-left: 2rem;
+}
+
 @media (max-width: 720px) and (min-height: 360px){
   main {
     margin-top: -11rem;
@@ -61,5 +65,8 @@ main {
     font-size: 1.7rem;
     width: 11rem;
     margin-top: 1rem;
+  }
+  .lose {
+    margin-left: 2rem;
   }
 }
