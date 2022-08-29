@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import ScrollToBottom from 'react-scroll-to-bottom';
 import "./Chat.css"
 
-function Chat({socket, username, room}) {
+function Chat({socket, username, room, win, lose, tie}) {
     const [currentMessage, setCurrentMessage] = useState("");
     const [messageList, setMessagelist] = useState([]);
 
@@ -38,7 +38,7 @@ function Chat({socket, username, room}) {
         }
     }, [currentMessage]);
     return (
-      <div className="chat-window">
+      <div className={win || lose || tie ? "chat-window gameEnd" : "chat-window"}>
           <div className="chat-header">
               <p>Chat with your opponent!</p>
           </div>

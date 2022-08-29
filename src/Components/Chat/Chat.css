@@ -14,7 +14,7 @@
   @import url("https://fonts.googleapis.com/css?family=Open+Sans:300,400,700");
   
   .chat-window {
-    width: 300px;
+    width: 500px;
     height: 420px;
     margin-left: 4rem;
     margin-top: 1rem;
@@ -65,7 +65,7 @@
     width: auto;
     height: auto;
     min-height: 40px;
-    max-width: 120px;
+    max-width: 270px;
     background-color: #35853a;
     border-radius: 5px;
     color: white;
@@ -160,3 +160,20 @@
     justify-content: flex-start;
   }
   
+  @media (max-width: 720px) and (min-height: 360px){
+    .chat-window {
+      transform: scale(0.7);
+      margin-left: -5rem;
+      width: 30rem;
+      height: 6rem;
+      position: absolute;
+      margin-top: 10rem;
+    }
+    .chat-window .chat-body{
+      height: 14rem;
+    }
+    .chat-window .chat-body .message {
+      padding-top: 0;
+      padding-bottom: 0;
+    }
+  }

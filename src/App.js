@@ -10,6 +10,9 @@ function App() {
   const [roomCode, setRoomCode] = useState(null);
   const [username, setUsername] = useState("");
   const [showGame, setShowGame] = useState(false);
+  const [win, setWin] = useState(false);
+  const [lose, setLose] = useState(false);
+  const [tie, setTie] = useState(false)
 
   const joinRoom = () => {
     if (username !== "" && roomCode !== "") {
@@ -35,9 +38,9 @@ function App() {
       </div> )
       : (
       <div className="gameContainer">
-        <Game socket={socket} roomCode={roomCode} />
+        <Game socket={socket} roomCode={roomCode} win={win} setWin={setWin} lose={lose} setLose={setLose} tie={tie} setTie={setTie} />
         <br />
-        <Chat socket={socket} username={username} room={roomCode} />
+        <Chat socket={socket} username={username} room={roomCode} win={win} lose={lose} tie={tie} />
       </div>
       )}
     </div>

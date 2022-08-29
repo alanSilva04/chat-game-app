@@ -1,8 +1,9 @@
 import { useEffect, useState } from "react";
 import Cell from "../Cell/Cell";
 import "./Game.css";
+import Confetti from "react-confetti";
 
-const Main = ({ socket, roomCode }) => {
+const Main = ({ socket, roomCode, win, lose, tie, setWin, setLose, setTie }) => {
   const [board, setBoard] = useState(["", "", "", "", "", "", "", "", ""]);
   const [canPlay, setCanPlay] = useState(true);
 
@@ -21,7 +22,7 @@ const Main = ({ socket, roomCode }) => {
     if (canPlay && board[id] === "") {
       setBoard((data) => ({ ...data, [id]: "X" }));
       socket.emit("play", { id, roomCode });
-      setCanPlay(false);
+      // setCanPlay(false);
     }
   };
 
@@ -43,7 +44,7 @@ const Main = ({ socket, roomCode }) => {
   (board[0] === "O" && board[4] === "O" && board[8] === "O") ||
   (board[2] === "O" && board[4] === "O" && board[6] === "O");
 
-  const tie = ((board[0] === "X" || "O" && board[0] !== "") &&
+  const tieConditions = ((board[0] === "X" || "O" && board[0] !== "") &&
                 (board[1] === "X" || "O" && board[1] !== "") &&
                 (board[2] === "X" || "O" && board[2] !== "") &&
                 (board[3] === "X" || "O" && board[3] !== "") &&
@@ -55,20 +56,26 @@ const Main = ({ socket, roomCode }) => {
 
   useEffect(() => {
     if (winConditions) {
-      alert("You won!")
-      setBoard(["", "", "", "", "", "", "", "", ""]);
+      setWin(true)
     } else if (loseConditions) {
-      alert("You lose!")
-      setBoard(["", "", "", "", "", "", "", "", ""]);
-    } else if(tie) {
-      alert("It's a tie!")
-      setBoard(["", "", "", "", "", "", "", "", ""]);
+      setLose(true)
+    } else if(tieConditions) {  
+      setTie(true)
     }
   }, [board])
 
+  function resetGame() {
+    return (
+      setWin(false),
+      setLose(false),
+      setTie(false),
+      setBoard(["", "", "", "", "", "", "", "", ""])
+    )
+  }
+
   return (
     <main>
-      <section className="main-section">
+      <section className={win || lose || tie ? "main-section gameEnd" : "main-section"}>
         <Cell handleCellClick={handleCellClick} id={"0"} text={board[0]} />
         <Cell handleCellClick={handleCellClick} id={"1"} text={board[1]} />
         <Cell handleCellClick={handleCellClick} id={"2"} text={board[2]} />
@@ -81,6 +88,28 @@ const Main = ({ socket, roomCode }) => {
         <Cell handleCellClick={handleCellClick} id={"7"} text={board[7]} />
         <Cell handleCellClick={handleCellClick} id={"8"} text={board[8]} />
       </section>
+
+        {win ?
+        <>
+          <Confetti/> 
+          <div className="gameFinished">
+            <h1 className="endText"> Congratulations you won!!! </h1>
+            <div className="resetButton" onClick={resetGame}> Reset Game </div>
+          </div> 
+        </> : ""    
+        }
+        {lose ?
+            <div className="gameFinished"> 
+              <h1 className="endText"> Sorry you lose </h1>
+              <div className="resetButton" onClick={resetGame}> Reset Game </div>
+            </div> : ""
+        }
+        {tie ?
+            <div className="gameFinished">
+              <h1 className="endText"> It's a tie!! Good luck next time </h1>
+              <div className="resetButton" onClick={resetGame}> Rematch </div>
+            </div> : ""
+        }
     </main>
   );
 };

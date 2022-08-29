@@ -11,3 +11,52 @@ main {
   background-color: var(--secondary-color);
   gap: 0.5rem;
 }
+
+.gameFinished {
+  z-index: 4;
+  position: absolute;
+  margin-top: 8rem;
+  margin-left: -1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  align-items: center;
+}
+
+.gameFinished h1 {
+  font-size: 4rem;
+}
+
+.gameFinished div {
+  font-size: 2rem;
+  width: 15rem;
+  border-radius: 10px;
+  background-color: black;
+  color: white;
+}
+
+.gameFinished div:hover {
+  color: white;
+  background-color: rgb(62, 62, 62);
+  cursor: pointer;
+}
+
+@media (max-width: 720px) and (min-height: 360px){
+  main {
+    margin-left: 0rem;
+    margin-top: -10rem;
+  }
+  .gameFinished {
+    margin-top: 11rem;
+    margin-left: -3rem;
+  }
+  .gameFinished h1 {
+    font-size: 2.3rem;
+  }
+  .gameFinished div {
+    font-size: 1.7rem;
+    width: 11rem;
+    margin-top: 1rem;
+  }
+}
