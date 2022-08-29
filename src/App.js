@@ -1,5 +1,5 @@
 import "./App.css"
-import Main from "./Components/Main/Main";
+import Game from "./Components/Game/Game";
 import { useState } from "react";
 import io from "socket.io-client";
 import Chat from "./Components/Chat/Chat";
@@ -35,7 +35,7 @@ function App() {
       </div> )
       : (
       <div className="gameContainer">
-        <Main socket={socket} roomCode={roomCode} />
+        <Game socket={socket} roomCode={roomCode} />
         <br />
         <Chat socket={socket} username={username} room={roomCode} />
       </div>
