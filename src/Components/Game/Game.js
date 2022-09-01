@@ -14,7 +14,6 @@ const Main = ({ socket, roomCode, win, lose, tie, setWin, setLose, setTie }) => 
 
   useEffect(() => {
     socket.on("updateGame", (id) => {
-      console.log("use Effect", id);
       setBoard((data) => ({ ...data, [id]: "O" }));
       setCanPlay(true);
     });

@@ -21,6 +21,8 @@ function App() {
     }
   };
 
+  console.log(roomCode, username)
+
 
   return (
     <div className="App">
@@ -35,6 +37,7 @@ function App() {
           <input type="text" placeholder="Room ID..." onChange={(event) => { setRoomCode(event.target.value); }} onKeyPress={(event) => {event.key === "Enter" && joinRoom()}}/>
           <button onClick={joinRoom}>Join A Room</button>
         </div>
+        <h4>Remember wait for your friend before start playing</h4>
       </div> )
       : (
       <div className="gameContainer">
