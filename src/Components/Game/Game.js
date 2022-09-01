@@ -6,6 +6,11 @@ import Confetti from "react-confetti";
 const Main = ({ socket, roomCode, win, lose, tie, setWin, setLose, setTie }) => {
   const [board, setBoard] = useState(["", "", "", "", "", "", "", "", ""]);
   const [canPlay, setCanPlay] = useState(true);
+  const [winCount, setWinCount] = useState(0);
+  const [tieCount, setTieCount] = useState(0);
+  const [loseCount, setLoseCount] = useState(0);
+
+
 
   useEffect(() => {
     socket.on("updateGame", (id) => {
@@ -22,7 +27,7 @@ const Main = ({ socket, roomCode, win, lose, tie, setWin, setLose, setTie }) => 
     if (canPlay && board[id] === "") {
       setBoard((data) => ({ ...data, [id]: "X" }));
       socket.emit("play", { id, roomCode });
-      setCanPlay(false);
+      // setCanPlay(false);
     }
   };
 
@@ -44,23 +49,26 @@ const Main = ({ socket, roomCode, win, lose, tie, setWin, setLose, setTie }) => 
   (board[0] === "O" && board[4] === "O" && board[8] === "O") ||
   (board[2] === "O" && board[4] === "O" && board[6] === "O");
 
-  const tieConditions = ((board[0] === "X" || "O" && board[0] !== "") &&
-                (board[1] === "X" || "O" && board[1] !== "") &&
-                (board[2] === "X" || "O" && board[2] !== "") &&
-                (board[3] === "X" || "O" && board[3] !== "") &&
-                (board[4] === "X" || "O" && board[4] !== "") &&
-                (board[5] === "X" || "O" && board[5] !== "") &&
-                (board[6] === "X" || "O" && board[6] !== "") &&
-                (board[7] === "X" || "O" && board[7] !== "") &&
-                (board[8] === "X" || "O" && board[8] !== ""));
+  const tieConditions = ((board[0] === ("X" || "O") && board[0] !== "") &&
+                (board[1] === ("X" || "O") && board[1] !== "") &&
+                (board[2] === ("X" || "O") && board[2] !== "") &&
+                (board[3] === ("X" || "O") && board[3] !== "") &&
+                (board[4] === ("X" || "O") && board[4] !== "") &&
+                (board[5] === ("X" || "O") && board[5] !== "") &&
+                (board[6] === ("X" || "O") && board[6] !== "") &&
+                (board[7] === ("X" || "O") && board[7] !== "") &&
+                (board[8] === ("X" || "O") && board[8] !== ""));
 
   useEffect(() => {
     if (winConditions) {
       setWin(true)
+      setWinCount((prevCount) => (prevCount +1))
     } else if (loseConditions) {
       setLose(true)
+      setLoseCount((prevCount) => (prevCount +1))
     } else if(tieConditions) {  
       setTie(true)
+      setTieCount((prevCount) => (prevCount +1))
     }
   }, [board])
 
@@ -88,6 +96,14 @@ const Main = ({ socket, roomCode, win, lose, tie, setWin, setLose, setTie }) => 
         <Cell handleCellClick={handleCellClick} id={"7"} text={board[7]} />
         <Cell handleCellClick={handleCellClick} id={"8"} text={board[8]} />
       </section>
+
+      <div className={win || lose || tie ? "counts gameEnd" : "counts"}>
+        <ul>
+          <li className="counter"> Win Count <br />{winCount}</li>
+          <li className="counter"> Draws Count <br />{tieCount}</li>
+          <li className="counter"> Loss Count <br />{loseCount}</li>
+        </ul>
+      </div>
 
         {win ?
         <>

@@ -10,6 +10,7 @@ main {
   grid-template-rows: repeat(3, 1fr);
   background-color: var(--secondary-color);
   gap: 0.5rem;
+  z-index: 4;
 }
 
 .gameFinished {
@@ -50,6 +51,30 @@ main {
   margin-left: 2rem;
 }
 
+.counts {
+  z-index: 0;
+}
+
+.counts ul{
+  display: flex;
+  flex-direction: row;
+  text-align: center;
+  margin-left: 2.6rem;
+  margin-top: 1rem;
+}
+
+.counts li{
+  list-style: none;
+  padding: 1rem;
+}
+
+.counter {
+  background: rgb(228, 228, 228);
+  border-radius: 5rem;
+  margin-left: 5px;
+  margin-right: 5px;
+}
+
 @media (max-width: 720px) and (min-height: 360px){
   main {
     margin-top: -11rem;
@@ -68,5 +93,16 @@ main {
   }
   .lose {
     margin-left: 2rem;
+  }
+  .counts {
+    margin-top: -23rem;
+  }
+  .counts ul{
+    margin: 0;
+    margin-left: 0.86rem;
+  }
+  .counts li{
+    margin: 0;
+    padding: 6px;
   }
 }
